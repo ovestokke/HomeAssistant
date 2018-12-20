@@ -1,0 +1,49 @@
+id: Morning info
+alias: Morning info
+hide_entity: false
+trigger:
+- platform: state
+  entity_id: sensor.hallway_motion
+  to: '1'
+condition:
+  condition: or
+  conditions:
+  - condition: time
+    after: 07:00:00
+    before: 09:00:00
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  - condition: time
+    after: 08:00:00
+    before: '11:00:00'
+    weekday:
+    - sat
+    - sun
+action:
+- service: homeassistant.turn_on
+  data:
+    entity_id: light.badtak
+    brightness: 254
+    color_temp: 156
+- service: homeassistant.turn_on
+  data:
+    entity_id: light.inngangtak
+    brightness: 254
+    color_temp: 156
+- service: homeassistant.turn_on
+  data:
+    entity_id: light.stuetak
+    brightness: 254
+    color_temp: 156
+- service: homeassistant.turn_on
+  entity_id: script.jarvis_greeting
+- service: automation.turn_off
+  entity_id: automation.morning_info
+- delay:
+    hours: 3
+- service: automation.turn_on
+  entity_id: automation.morning_info

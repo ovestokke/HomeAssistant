@@ -1,0 +1,148 @@
+#shown dashboards
+default_view:
+    view: yes
+    icon: mdi:home
+    entities:
+        - group.lights
+        - group.media
+        - scene.MovieLights
+        - scene.NormalLights
+        - automation.morning_info
+        - automation.evening_lights
+        - automation.commute__update_evning_commute_sensor
+        - automation.commute__update_morning_commute_sensor
+        - group.colorlights
+        - group.Vecation_Mode
+        - group.climate_indoor
+
+weatherdashboard:
+    name: Weather
+    view: yes
+    icon: mdi:weather-sunset
+    entities:
+        #- group.weathergroup1
+        #- group.weathergroup2
+        #- group.weathergroup3
+        - group.weathergroup4
+        - group.TibberGroup
+        - group.Telldus
+        - sensor.hallway_temperature
+        
+
+media: 
+  name: Media
+  view: yes
+  icon: mdi:music
+  entities:
+    - media_player.sonosplay1
+    - media_player.soverom
+    - media_player.chromecastove
+    - media_player.spotify
+
+Travel:
+  name: Travel
+  view: yes
+  entities:
+  - sensor.google_travel_time__driving
+  - sensor.work_to_home
+
+
+
+
+
+#
+#Hidden config
+#
+
+climate_indoor:
+    name: Climate Indoor
+    entities:
+        - climate.stue
+        - sensor.hallway_temperature
+        - sensor.tempstueinne_humidity
+
+
+people_status:
+    name: People Status
+    view: no
+    entities:
+        - sensor.ove_status
+#        - input_select.ove_status_dropdown
+
+
+Vecation_Mode:
+    name: Vecation Mode
+    icon: mdi:airplane
+    entities:
+        - input_boolean.vacation_mode
+        - input_number.vecation_mode_temp
+bedrom:
+    name: Bedrom
+    icon: mdi:home
+    entities:
+        - light.soverom
+
+bathrom:
+    name: Bathrom
+    icon: mdi:home
+    entities:
+        - light.bathroom
+livingrom:
+    name: Livingrom
+    icon: mdi:home
+    entities:
+        - light.lounge
+        - light.stuebordlampe
+        - light.stuesofatak
+        - switch.stikkontakt_kjkkenvindu
+hallway:
+    name: Hallway
+    view: no
+    icon: mdi:home
+    entities:
+        - light.hallway
+        - sensor.hallway_temperature
+        - sensor.hallway_motion
+lights:
+    name: Lights
+    icon: mdi:home
+    entities:
+        - light.soverom
+        - light.bathroom
+        - light.hallway
+        - light.stuebordlampe
+        - light.stuesofatak
+        - light.hue_color_lamp_1
+        - light.stikkkontakt_kjokkenvindu
+
+
+weathergroup4:
+    name: Vær
+    control: hidden
+    entities:
+        - weather.metno
+        - weather.meraker
+        - weather.storlidalen
+
+Telldus:
+    name: TelldusDev
+    control: hidden
+    entities:
+        - sensor.tempute_temperature
+        - sensor.tempstueinne_temperature
+        - sensor.tempstueinne_humidity
+        - switch.oljeovnstue
+
+
+TibberGroup:
+    name: TibberData
+    control: hidden
+    entities:
+        - sensor.electricity_price_ole_aasveds_veg_35
+
+ColorLights:
+    name: ColorLights
+    control: hidden
+    entities:
+        - light.stuebordlampe
+        - light.stuesofatak

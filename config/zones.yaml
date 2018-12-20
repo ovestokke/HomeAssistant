@@ -1,0 +1,19 @@
+- name: Work
+  latitude: !secret latitude_work
+  longitude: !secret longitude_work
+  elevation: 100
+  radius: 100
+  icon: mdi:city
+
+- name: Home
+  latitude: !secret latitude_oav35
+  longitude: !secret longitude_oav35
+  elevation: 250
+  radius: 25
+  icon: mdi:home-modern
+
+- name: Box
+  latitude: !secret latitude_box
+  longitude: !secret longitude_box
+  radius: 50
+  icon: mdi:dumbbell

@@ -1,0 +1,47 @@
+- name: NormalLights
+  entities:
+      light.hallway:
+          state: on
+          transition: 2
+          brightness_pct: 60
+          color_temp: 350
+      light.hue_color_lamp_1:
+          state: on
+          transition: 2
+          rgb_color: [243,179,80]
+      light.stuebordlampe:
+          state: on
+          transition: 2
+          brightness_pct: 90
+          rgb_color: [243,179,80]
+      light.stuesofatak:
+          state: on
+          transition: 2
+          rgb_color: [243,179,80]
+- name: MovieLights
+  entities:
+      light.hue_color_lamp_1:
+          state: on
+          transition: 2
+          brightness_pct: 10
+          rgb_color: [253,109,31]
+      light.stuebordlampe:
+          state: on
+          transition: 2
+          brightness_pct: 10
+          rgb_color: [253,109,31]
+      light.stuesofatak:
+          state: on
+          transition: 2
+          brightness_pct: 20
+          rgb_color: [253,109,31]
+      light.bathroom:
+          state: off
+          transition: 2
+      light.bedrom:
+          state: off
+          transition: 2
+      light.hallway:
+          state: off
+          transition: 2
+        

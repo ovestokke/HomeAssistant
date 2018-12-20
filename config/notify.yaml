@@ -1,0 +1,4 @@
+- platform: html5
+  name: Google Notifier
+  gcm_api_key: 'AAAAlEU5niI:APA91bGqcpH2kHfHaRbaIQvxyfZhuKFrbZn5I1QAnyOQsamsLNTRKNL-zJdq7kg1niSboSvzpCcN3VfCk_TcEZ9jT3jaC26qSdzqCu0yYFjNXyOMQCFrQsb6aqQpzTQWYKHOtOfuTmmq'
+  gcm_sender_id: '636816563746'

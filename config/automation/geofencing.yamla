@@ -1,0 +1,106 @@
+- id: Vacation Mode for Living Room OFF
+  alias: Vacation Mode for Living Room OFF
+  trigger:
+    platform: sun
+    event: sunset
+    offset: +01:25:00
+  condition:
+    condition: state
+    entity_id: input_boolean.vacation_mode
+    state: 'on'
+  action:
+  - service: homeassistant.turn_off
+    data:
+      entity_id: group.lights
+- id: Mark Ove as just arrived
+  alias: Mark Ove as just arrived
+  trigger:
+  - platform: state
+    entity_id: device_tracker.ce0517156d28ecf70d
+    from: not_home
+    to: home
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.Ove_status_dropdown
+      option: Just Arrived
+- id: Mark Ove as home
+  alias: Mark Ove as home
+  trigger:
+  - platform: state
+    entity_id: input_select.Ove_status_dropdown
+    to: Just Arrived
+    for:
+      minutes: 10
+  - platform: state
+    entity_id: input_select.Ove_status_dropdown
+    from: Just Left
+    to: Just Arrived
+  condition:
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.Ove_status_dropdown
+      option: Home
+- id: Mark Ove as just left
+  alias: Mark Ove as just left
+  trigger:
+  - platform: state
+    entity_id: device_tracker.ce0517156d28ecf70d
+    from: home
+    to: not_home
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.Ove_status_dropdown
+      option: Just Left
+- id: Mark Ove as away
+  alias: Mark Ove as away
+  trigger:
+  - platform: state
+    entity_id: input_select.Ove_status_dropdown
+    to: Just Left
+    for:
+      minutes: 10
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.Ove_status_dropdown
+      option: Away
+- id: Mark Ove as extended away
+  alias: Mark Ove as extended away
+  trigger:
+  - platform: state
+    entity_id: input_select.phil_status_dropdown
+    to: Away
+    for:
+      hours: 24
+  action:
+  - service: input_select.select_option
+    data_template:
+      entity_id: input_select.phil_status_dropdown
+      option: Extended Away
+- id: Mark Ove as at work
+  alias: Mark Ove as at work
+  trigger:
+  - platform: state
+    entity_id: device_tracker.ce0517156d28ecf70d
+    from: not_home
+    to: Work
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.Ove_status_dropdown
+      option: Work
+- id: Mark Ove as at Box
+  alias: Mark Ove as at Box
+  trigger:
+  - platform: state
+    entity_id: device_tracker.ce0517156d28ecf70d
+    from: not_home
+    to: Box
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.Ove_status_dropdown
+      option: Box

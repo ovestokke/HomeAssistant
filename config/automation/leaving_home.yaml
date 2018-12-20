@@ -1,0 +1,27 @@
+id: 'Coming_Home'
+alias: Coming Home
+hide_entity: false
+trigger:
+- platform: state
+  entity_id: device_tracker.ovegalaxys8lan
+  from: "home"
+  to: 'not_home'
+  for:
+    minutes: 10
+condition: []
+action:
+- service: homeassistant.turn_off
+  data:
+    entity_id: group.all_lights
+
+
+
+    
+
+
+
+
+
+
+    
+    

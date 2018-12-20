@@ -1,0 +1,70 @@
+- platform: rest
+  resource: http://192.168.86.114/api/AfcNAlFyhIer7P0RTmHyLXpUYzxLaZ8irApFmMQg/sensors/6
+  value_template: '{{ value_json.state.lightlevel }}'
+  unit_of_measurement: Lux
+  name: 'Hallway Lux'
+  scan_interval: 2
+
+- platform: rest
+  resource: http://192.168.86.114/api/AfcNAlFyhIer7P0RTmHyLXpUYzxLaZ8irApFmMQg/sensors/4
+  value_template: '{{ value_json.state.temperature | float / 100 }}'
+  unit_of_measurement: °C
+  name: 'Hallway Temperature'
+  scan_interval: 2
+
+- platform: rest
+  resource: http://192.168.86.114/api/AfcNAlFyhIer7P0RTmHyLXpUYzxLaZ8irApFmMQg/sensors/11
+  value_template: '{{ value_json.state.status }}'
+  name: 'Hallway Motion Emu'
+
+- platform: rest
+  resource: http://192.168.86.114/api/AfcNAlFyhIer7P0RTmHyLXpUYzxLaZ8irApFmMQg/sensors/5
+  value_template: '{{ value_json.state.presence }}'
+  name: 'Hallway Motion'
+
+#- platform: command_line
+#  name: SSL cert expiry
+#  unit_of_measurement: days
+#  scan_interval: 10800
+#  command: "ssl-cert-check -b -c /config/cert.pem | awk '{ print $NF }'"
+
+#- platform: fitbit 
+#  monitored_resources:
+#    - "body/weight"
+#    - "devices/battery"
+
+- platform: google_wifi
+
+
+#- platform: template
+#  sensors:
+#    ove_status:
+#      value_template: '{{ states.input_select.ove_status_dropdown.state }}'
+#      friendly_name: 'Ove'
+
+- platform: yr
+
+- platform: google_travel_time
+  Name: Home To Work
+  api_key: !secret googleapikey
+  origin: Ole Aasveds veg 35, Trondheim, Norway
+  destination: Falkenborgvegen 9, Trondheim, Norway
+  options: 
+    mode: driving
+
+- platform: google_travel_time
+  name: Work To Home
+  api_key: !secret googleapikey
+  origin: Falkenborgvegen 9, Trondheim, Norway
+  destination: Ole Aasveds veg 35, Trondheim, Norway
+  options: 
+    mode: driving
+
+- platform: entur_public_transport
+  stop_ids:
+     - 'NSR:StopPlace:42538' #Heggdalen
+     - 'NSR:StopPlace:42282' #Voll Studentby
+     - 'NSR:StopPlace:42625' #SirkusShopping
+     - 'NSR:StopPlace:43133' #Solsiden
+     - 'NSR:StopPlace:43292' #Kongens gate
+     - 'NSR:StopPlace:41613' #Prinsens gate

@@ -1,0 +1,22 @@
+id: update_morning_commute_sensor
+alias: "Commute - Update evning commute sensor"
+initial_state: 'on'
+trigger:
+  - platform: time
+    minutes: '/2'
+    seconds: 00
+condition:
+  - condition: time
+    after: '15:00:00'
+    before: '18:00:00'
+  - condition: time
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+action:
+  - service: sensor.google_travel_sensor_update
+    data:
+      entity_id: sensor.work_to_home

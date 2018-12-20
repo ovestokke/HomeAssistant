@@ -1,0 +1,28 @@
+id: Vacation Mode for Living Room ON
+alias: Vacation Mode for Living Room ON
+trigger:
+  platform: sun
+  event: sunset
+  offset: -00:38:00
+condition:
+  condition: state
+  entity_id: input_boolean.vacation_mode
+  state: 'on'
+action:
+- service: homeassistant.turn_on
+  data:
+    entity_id: light.stuetak
+    brightness: 237
+    color_temp: 358
+- service: homeassistant.turn_on
+  data:
+    entity_id: light.hue_color_lamp_1
+    brightness: 206
+    color_temp: 153
+    rgb_color: 255,128,69
+- service: homeassistant.turn_on
+  data:
+    entity_id: light.hue_color_candle_1
+    brightness: 206
+    color_temp: 375
+    rgb_color: 255,219,86

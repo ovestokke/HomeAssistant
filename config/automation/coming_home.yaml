@@ -1,0 +1,55 @@
+id: 'Coming_Home'
+alias: Coming Home
+hide_entity: false
+trigger:
+- platform: state
+  entity_id: device_tracker.ovegalaxys8lan
+  from: "not_home"
+  to: 'home'
+condition:
+  condition: sun
+  after: sunset
+  # Optional offset value
+  after_offset: "-1:00:00"
+action:
+- service: homeassistant.turn_on
+  data:
+    entity_id: light.badtak
+    brightness: 214
+    color_temp: 385
+- service: homeassistant.turn_on
+  data:
+    entity_id: light.inngangtak
+    brightness: 214
+    color_temp: 385
+- service: homeassistant.turn_on
+  data:
+    entity_id: light.stuetak
+    brightness: 214
+    color_temp: 385
+- service: homeassistant.turn_on
+  data:
+    entity_id: light.hue_color_candle_1
+    brightness: 196
+    color_temp: 375
+    rgb_color: 255,219,86
+- service: homeassistant.turn_on
+  data:
+    entity_id: light.hue_color_lamp_1
+    brightness: 196
+    color_temp: 153
+    rgb_color: 255,128,69
+
+
+
+
+
+    
+
+
+
+
+
+
+    
+    

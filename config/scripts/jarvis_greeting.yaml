@@ -1,0 +1,35 @@
+alias: Jarvis Greeting
+sequence:
+  - service: media_player.sonos_snapshot
+    data_template:
+      entity_id: media_player.bathroom
+  - service: media_player.volume_set
+    data_template:
+      entity_id: media_player.bathroom
+      volume_level: 0.5
+  - service: tts.google_say
+    data_template:
+      entity_id: media_player.bathroom
+      message: >
+        {% if now().strftime("%H")|int < 12 %}
+        Good morning.
+        {% elif now().strftime("%H")|int < 18 %}
+        Good afternoon.
+        {% else %}
+        Good evening.
+        {% endif %}
+        It's currently {{states.sensor.dark_sky_summary.state}} and {{states.sensor.weather_temperature.state|round}} degrees. Today will be {{states.sensor.dark_sky_hourly_summary.state|replace(".", "")}}, with a high of {{states.sensor.dark_sky_daily_high_temperature.state|round}} degrees.
+  - delay:
+      seconds: 1
+  - delay: >-
+      {% set duration = states.media_player.bathroom.attributes.media_duration %}
+      {% if duration > 0 %}
+        {% set duration = duration - 1 %}
+      {% endif %}
+      {% set seconds = duration % 60 %}
+      {% set minutes = (duration / 60)|int % 60 %}
+      {% set hours = (duration / 3600)|int %}
+      {{ "%02i:%02i:%02i"|format(hours, minutes, seconds)}}
+  - service: media_player.sonos_restore
+    data_template:
+      entity_id: media_player.bathroom

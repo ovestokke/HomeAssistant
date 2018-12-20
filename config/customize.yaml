@@ -1,0 +1,10 @@
+#Customization
+
+group.all_automations:
+    hidden: false
+    friendly_name: 'Automations'
+
+
+sensor.tempstueinne_humidity:
+    friendly_name: Stue Humidity
+

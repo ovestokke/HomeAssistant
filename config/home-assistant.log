@@ -1,0 +1,22 @@
+2018-12-20 11:23:35 ERROR (MainThread) [homeassistant.components.media_player] Error while setting up platform roku
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/homeassistant/helpers/entity_platform.py", line 128, in _async_setup_platform
+    SLOW_SETUP_MAX_WAIT, loop=hass.loop)
+  File "/usr/local/lib/python3.6/asyncio/tasks.py", line 358, in wait_for
+    return fut.result()
+  File "/usr/local/lib/python3.6/concurrent/futures/thread.py", line 56, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/local/lib/python3.6/site-packages/homeassistant/components/media_player/roku.py", line 56, in setup_platform
+    new_roku = RokuDevice(host)
+  File "/usr/local/lib/python3.6/site-packages/homeassistant/components/media_player/roku.py", line 92, in __init__
+    self.update()
+  File "/usr/local/lib/python3.6/site-packages/homeassistant/components/media_player/roku.py", line 103, in update
+    if self.roku.current_app is not None:
+  File "/usr/local/lib/python3.6/site-packages/roku/core.py", line 262, in current_app
+    resp = self._get('/query/active-app')
+  File "/usr/local/lib/python3.6/site-packages/roku/core.py", line 172, in _get
+    return self._call('GET', path, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/roku/core.py", line 192, in _call
+    raise RokuException(resp.content)
+roku.core.RokuException: b''
+2018-12-20 11:27:19 WARNING (MainThread) [homeassistant.components.http.auth] You need to use a bearer token to access /api/gpslogger from 193.90.220.250

@@ -1,0 +1,128 @@
+resources:
+  - url: /local/gauge-card.js?v=1
+    type: js
+
+title: Home
+views:
+  - id: 0  # Automatically created id
+    title: default_view
+    icon: mdi:home
+    cards:
+      - id: 3a82c5088e494d52aeec89cd9239efa3  # Automatically created id
+        type: entities
+        entities:
+          - scene.movielights
+          - scene.normallights
+          - automation.morning_info
+          - automation.evening_lights
+      - id: d768bd4257d9435ca569f12b46464dd0  # Automatically created id
+        type: entities
+        title: Lights
+        show_header_toggle: true
+        entities:
+          - light.soverom
+          - light.bathroom
+          - light.hallway
+          - light.stuebordlampe
+          - light.stuesofatak
+          - light.hue_color_lamp_1
+          - light.stikkkontakt_kjokkenvindu
+      - id: b804d1f752ef4260a7a765c1cec7f6ce  # Automatically created id
+        type: entities
+        title: ColorLights
+        show_header_toggle: false
+        entities:
+          - light.stuebordlampe
+          - light.stuesofatak
+      - id: 0f68c33f0feb42e6bc77e5974af81493  # Automatically created id
+        type: entities
+        title: Vecation Mode
+        show_header_toggle: true
+        entities:
+          - input_boolean.vacation_mode
+          - input_number.vecation_mode_temp
+      - id: 4937e003f1594e77b52c4fa847a1c077  # Automatically created id
+        type: entities
+        title: Climate Indoor
+        show_header_toggle: true
+        entities:
+          - climate.stue
+          - sensor.hallway_temperature
+          - sensor.tempstueinne_humidity
+      - id: 13
+        type: thermostat
+        entity: climate.stue
+
+
+  - id: 1  # Automatically created id
+    title: Weather
+    icon: mdi:weather-sunset
+    type: vertical-stack
+    cards:
+      - id: 96c4604210f3417cb331d8a23e2ffb0f  # Automatically created id
+        type: weather-forecast
+        entity: weather.metno
+      - type: horizontal-stack
+        cards:
+        - id: f1ba30d5b9d9464a8b9cf71f895787d2  # Automatically created id
+          type: custom:gauge-card
+          title: Temperature Stue
+          entity: sensor.tempstueinne_temperature
+          min: -10
+          max: 30
+        - id: bc8a62dcf8164ae296dd52fb997088ab  # Automatically created id
+          type: custom:gauge-card
+          title: Temperature Hallway
+          entity: sensor.hallway_temperature
+          min: -10
+          max: 30
+      - type: horizontal-stack
+        cards:    
+        - id: 1d34c9f2db3a4d959c90674214316596  # Automatically created id
+          type: custom:gauge-card
+          title: Tempratur Ute
+          entity: sensor.tempute_temperature
+          min: -30
+          max: 40
+        - id: 9d5fac666bcb483799c0b4de171bbe33  # Automatically created id
+          type: custom:gauge-card
+          title: Fuktighet Stue
+          entity: sensor.tempstueinne_humidity
+          min: 0
+          max: 100
+      - id: 1000
+        type: iframe
+        url: https://embed.windy.com/embed2.html
+        aspect_ratio: 100%
+
+      - id: 6728010a971047ed9ad523672134a4dd  # Automatically created id
+        type: sensor
+        title: Electricity Price Ole Aasveds veg 35
+        line_color: "#3498db"
+        entity: sensor.electricity_price_ole_aasveds_veg_35
+
+  - id: 2  # Automatically created id
+    title: Media
+    icon: mdi:music
+    cards:
+      - id: 5023893201734bd2b6a217b213a803fb  # Automatically created id
+        type: media-control
+        entity: media_player.soverom
+      - id: e12358714dd9499c98b70a66dc4b62a2  # Automatically created id
+        type: media-control
+        entity: media_player.chromecastove
+
+
+
+  - id: 3  # Automatically created id
+    title: Travel
+    icon: mdi:car-sports
+    cards:
+      - type: entities
+        entity: sensor.google_travel_time__driving
+      - type: entities
+        entity: sensor.work_to_home
+      - type: entities
+        entity: sensor.entur_heggdalen_platform_72870
+
+

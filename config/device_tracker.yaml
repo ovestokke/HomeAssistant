@@ -1,0 +1,8 @@
+- platform: nmap_tracker
+  hosts: 192.168.86.0/24
+  home_interval: 60
+  exclude:
+    - 192.168.86.119
+
+- platform: gpslogger
+  password: !secret gpslogger_password

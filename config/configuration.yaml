@@ -1,0 +1,153 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Ole Aasveds veg 35
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude_oav35
+  longitude: !secret longitude_oav35
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 250
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Oslo
+  # Customization file
+  customize: !include customize.yaml
+
+# Enables the frontend
+frontend:
+
+http:
+  #api_password: !secret http_password
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+  base_url: stokke.duckdns.org
+  trusted_networks: 192.168.86.0/24
+  ip_ban_enabled: True
+  login_attempts_threshold: 10
+# Enables configuration UI
+config:
+
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Sensors
+
+# Text to speech
+tts:
+  - platform: google
+
+# Cloud
+cloud:
+
+sensor: !include sensors.yaml
+notify: !include notify.yaml
+switch: !include switches.yaml
+device_tracker: !include device_tracker.yaml
+group: !include groups.yaml
+zone: !include zones.yaml
+scene: !include scenes.yaml
+
+script: !include_dir_named scripts
+automation: !include_dir_list automation
+
+climate:
+  - platform: generic_thermostat
+    name: Stue
+    heater: switch.oljeovnstue
+    target_sensor: sensor.tempstueinne_temperature
+    min_temp: 10
+    max_temp: 30
+    target_temp: 23
+    min_cycle_duration:
+      minutes: 3
+    away_temp: 15
+
+
+#influxdb:
+#  host: localhost
+#  include:
+#    domains:
+#      - sensor
+#      - input_boolean
+#      - binary_sensor
+#      - light
+#      - switch
+#      - weather
+
+tellduslive:
+
+input_boolean:
+  vacation_mode:
+    name: Vecation Mode
+    initial: off
+  movie_mode:
+    name: Movie Mode
+    initial: off
+  normal_lights:
+    name: Normal Lights
+    initial: off
+
+input_number:
+  vecation_mode_temp:
+    name: Vecation Mode Temp
+    initial: 20
+    min: 15
+    max: 25
+    step: 1
+
+light:
+  - platform: switch
+    name: Stikkkontakt Kjokkenvindu
+    entity_id: switch.stikkontakt_kjkkenvindu
+
+weather:
+  - platform: met
+    Name: Ole Aasveds veg 35
+  - platform: yweather
+  - platform: met
+    latitude: 63.4636417
+    longitude: 11.6794091
+    altitude: 650
+    name: Meråker
+  - platform: met
+    name: Storlidalen
+    latitude: 62.6923751
+    longitude: 9.0959684
+    altitude: 625
+
+tibber:
+  access_token: !secret tibber_accesstoken
+  #access_token: 4ae5b0b73ed561dec2073d81cbacce0d656c9f06c7f32fe433989832aab4db96
+
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: home_assistant
+  username: homeassistant
+  password: !secret influx_password
+  max_retries: 3
+  default_measurement: state
+
+
+
+
+logger:
+  default: warning
+  logs:
+    components.sensor.google_wifi: debug

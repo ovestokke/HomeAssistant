@@ -1,0 +1,14 @@
+id: Vacation Mode for Living Room OFF
+alias: Vacation Mode for Living Room OFF
+trigger:
+  platform: sun
+  event: sunset
+  offset: +01:25:00
+condition:
+  condition: state
+  entity_id: input_boolean.vacation_mode
+  state: 'on'
+action:
+- service: homeassistant.turn_off
+  data:
+    entity_id: group.lights
